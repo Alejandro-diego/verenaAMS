@@ -20,7 +20,7 @@ class _CargarProdutoState extends State<CargarProduto> {
 
  String iten1 = 'PizzasT';
 
-  static const menuItems = <String>['PizzasT', 'PizzasD', 'Massas', 'Saladas', 'Bebibas', 'Petisco'];
+  static const menuItems = <String>['PizzasT', 'PizzasD', 'Massas', 'Saladas', 'Bebibas', 'Petiscos'];
   final List<DropdownMenuItem<String>> _dropDownMenuItens = menuItems
       .map((String value) => DropdownMenuItem<String>(
             value: value,
