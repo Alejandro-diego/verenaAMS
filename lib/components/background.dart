@@ -5,11 +5,11 @@ class Background extends StatelessWidget {
   const Background({
     super.key,
     required this.child,
-    this.topImage = "assets/images/main_top.png",
+    this.topImage = "assets/topImage.png",
     this.bottomImage = "assets/images/login_bottom.png",
   });
 
-  final String topImage, bottomImage;
+  final String  topImage ,bottomImage;
 
   @override
   Widget build(BuildContext context) {
