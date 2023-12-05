@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
+import 'package:verenaadm/Screens/Home/edit_page.dart';
 
 class ListProduct extends StatefulWidget {
   const ListProduct({
@@ -37,30 +38,35 @@ class _ListProductState extends State<ListProduct> {
       ),
       body: Column(
         children: [
-          Text(widget.titulo,style:const  TextStyle(fontWeight: FontWeight.w900),),
+          Text(
+            widget.titulo,
+            style: const TextStyle(fontWeight: FontWeight.w900),
+          ),
           SizedBox(
             height: 400,
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
-                  .collection(widget.collection)
-                  // .where('produc' ,arrayContainsAny: ['CERA'])
+                  .collection(widget.collection)                 
                   .orderBy('produto', descending: find)
-                  .startAt([_searchController.text.toUpperCase()]).endAt(
-                      ['${_searchController.text.toUpperCase()}\uf8ff']).snapshots(),
-              builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  .startAt([_searchController.text.toUpperCase()]).endAt([
+                '${_searchController.text.toUpperCase()}\uf8ff'
+              ]).snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.hasError) {
                   return const Text('Something went wrong');
                 }
-            
+
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Text("Carregando");
                 }
-            
+
                 return ListView(
-                  children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                  children:
+                      snapshot.data!.docs.map((DocumentSnapshot document) {
                     Map<String, dynamic> data =
                         document.data()! as Map<String, dynamic>;
-            
+
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Card(
@@ -70,12 +76,24 @@ class _ListProductState extends State<ListProduct> {
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                            
                               Text('Reference n° :${data['reference']}'),
                               Text('Estoque    :${data['stock']}'),
                             ],
                           ),
                           trailing: Text('R\$: ${data['preco']}'),
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => EditPage(
+                                  collection: widget.collection,
+                                  produto: data['produto'],
+                                  price: '${data['preco']}',
+                                  reference: '${data['reference']}',
+                                  stock: '${data['stock']}',
+                                ),
+                              ),
+                            );
+                          },
                           onLongPress: () {
                             _db
                                 .collection('produtos')

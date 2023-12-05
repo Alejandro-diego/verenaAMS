@@ -3,42 +3,32 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-
-
 class CargarProduto extends StatefulWidget {
-  const CargarProduto(
-      {super.key,
-     });
+  const CargarProduto({
+    super.key,
+  });
 
- 
   @override
   State<CargarProduto> createState() => _CargarProdutoState();
 }
 
 class _CargarProdutoState extends State<CargarProduto> {
+  String iten1 = 'PizzasT';
 
-
- String iten1 = 'PizzasT';
-
-  static const menuItems = <String>['PizzasT', 'PizzasD', 'Massas', 'Saladas', 'Bebibas', 'Petiscos'];
+  static const menuItems = <String>[
+    'PizzasT',
+    'PizzasD',
+    'Massas',
+    'Saladas',
+    'Bebidas',
+    'Petiscos'
+  ];
   final List<DropdownMenuItem<String>> _dropDownMenuItens = menuItems
       .map((String value) => DropdownMenuItem<String>(
             value: value,
             child: Text(value),
           ))
       .toList();
-
-
-
-
-
-
-
-
-
-
-
-
 
   TextEditingController produto = TextEditingController();
   TextEditingController stock = TextEditingController();
@@ -61,8 +51,6 @@ class _CargarProdutoState extends State<CargarProduto> {
     super.dispose();
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,35 +62,24 @@ class _CargarProdutoState extends State<CargarProduto> {
         child: Form(
           key: _formKey,
           child: Column(
-
-
-            
-
-
-
-
-
-
-
             children: [
-
-              Row( children: [
-
- const Text('Categorias :'),
-                    DropdownButton<String>(
-                      value: iten1,
-                      onChanged: ((v) {
-                        setState(() {
-                          debugPrint(v);
-                          iten1 = v!;
-                        });
-                      }),
-                      items: _dropDownMenuItens,
-                    ),
-
-              ],),
+              Row(
+                children: [
+                  const Text('Categorias :'),
+                  DropdownButton<String>(
+                    value: iten1,
+                    onChanged: ((v) {
+                      setState(() {
+                        debugPrint(v);
+                        iten1 = v!;
+                      });
+                    }),
+                    items: _dropDownMenuItens,
+                  ),
+                ],
+              ),
               const Spacer(),
-                       TextFormField(
+              TextFormField(
                 //keyboardType: TextInputType.number,
                 controller: produto,
                 cursorColor: Colors.amberAccent,
@@ -157,8 +134,8 @@ class _CargarProdutoState extends State<CargarProduto> {
                   return null;
                 },
               ),
-             
-     /*
+
+              /*
               const Spacer(),
               TextFormField(
                 keyboardType: TextInputType.number,
@@ -278,26 +255,24 @@ class _CargarProdutoState extends State<CargarProduto> {
               ),
               const Spacer(),
               ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _db.collection(iten1).doc(reference.text).set({
-                        'description': descripcion.text,
-                        'produto': produto.text.toUpperCase(),
-                       // 'barCode': barCode.text,
-                        'reference': reference.text,
-                        'stock': int.parse(stock.text),
-                        'preco': double.parse(precio.text.replaceAll(',', '.')),
-                      });
-                      Navigator.of(context).pop();
-                    }
-                    if (int.parse(stock.text) >= 1) {
-                      _db
-                          .collection('producFaltante')
-                          .doc(barCode.text)
-                          .delete();
-                    }
-                  },
-                  child: const Text("Add")),
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    _db.collection(iten1).doc(reference.text).set({
+                      'description': descripcion.text,
+                      'produto': produto.text.toUpperCase(),
+                      // 'barCode': barCode.text,
+                      'reference': reference.text,
+                      'stock': int.parse(stock.text),
+                      'preco': double.parse(precio.text.replaceAll(',', '.')),
+                    });
+                    Navigator.of(context).pop();
+                  }
+                  if (int.parse(stock.text) >= 1) {
+                    _db.collection('producFaltante').doc(barCode.text).delete();
+                  }
+                },
+                child: const Text("Add"),
+              ),
               const Spacer(),
             ],
           ),
@@ -305,6 +280,4 @@ class _CargarProdutoState extends State<CargarProduto> {
       ),
     );
   }
-
-  
 }

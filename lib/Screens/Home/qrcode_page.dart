@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-// ignore: must_be_immutable
+
 class QrCodePage extends StatefulWidget {
-  QrCodePage({super.key, required this.code, required this.tag});
-  String code;
-  String tag;
+ const  QrCodePage({super.key, required this.code, required this.tag});
+ final String code;
+ final  String tag;
 
   @override
   State<QrCodePage> createState() => _QrCodePageState();
