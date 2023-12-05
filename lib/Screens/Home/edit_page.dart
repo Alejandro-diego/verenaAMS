@@ -10,9 +10,10 @@ class EditPage extends StatefulWidget {
       required this.produto,
       required this.collection,
       required this.reference,
-      required this.stock});
+      required this.stock,
+      required this.descripcion});
 
-  final String price, produto, collection, reference, stock;
+  final String price, produto, collection, reference, stock, descripcion;
 
   @override
   State<EditPage> createState() => _EditPageState();
@@ -23,10 +24,12 @@ class _EditPageState extends State<EditPage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController priceController = TextEditingController();
   TextEditingController stockController = TextEditingController();
+  TextEditingController descripcionController = TextEditingController();
   @override
   void initState() {
     priceController.text = widget.price;
     stockController.text = widget.stock;
+    descripcionController.text = widget.descripcion;
     super.initState();
   }
 
@@ -50,6 +53,36 @@ class _EditPageState extends State<EditPage> {
               children: [
                 const Spacer(),
                 TextFormField(
+                  keyboardType: TextInputType.name,
+                  controller: descripcionController,
+                  cursorColor: Colors.amberAccent,
+                  // style: const TextStyle(fontSize: 20),
+                  decoration: const InputDecoration(
+                    labelText: 'Descrição',
+                     labelStyle: TextStyle(
+                        color: Colors.black, backgroundColor: Colors.orange),
+                    prefixIcon: Padding(
+                      padding: EdgeInsetsDirectional.only(start: 2),
+                      child: Icon(
+                        Icons.article_outlined,
+                        size: 35,
+                        color: Colors.black,
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide:
+                          BorderSide(width: 2, color: Colors.amberAccent),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Descrição';
+                    }
+                    return null;
+                  },
+                ),
+                const Spacer(),
+                TextFormField(
                   keyboardType: TextInputType.number,
                   inputFormatters: [
                     FilteringTextInputFormatter.digitsOnly,
@@ -61,7 +94,8 @@ class _EditPageState extends State<EditPage> {
                   // style: const TextStyle(fontSize: 20),
                   decoration: const InputDecoration(
                     labelText: 'Preco',
-                    labelStyle: TextStyle(color: Colors.black),
+                    labelStyle: TextStyle(
+                        color: Colors.black, backgroundColor: Colors.orange),
                     prefixIcon: Padding(
                       padding: EdgeInsetsDirectional.only(start: 2),
                       child: Icon(
@@ -90,7 +124,8 @@ class _EditPageState extends State<EditPage> {
                   // style: const TextStyle(fontSize: 20),
                   decoration: const InputDecoration(
                     labelText: 'Quantidade',
-                    labelStyle: TextStyle(color: Colors.black,backgroundColor: Colors.orange),
+                    labelStyle: TextStyle(
+                        color: Colors.black, backgroundColor: Colors.orange),
                     prefixIcon: Padding(
                       padding: EdgeInsetsDirectional.only(start: 2),
                       child: Icon(
@@ -122,7 +157,7 @@ class _EditPageState extends State<EditPage> {
                         // 'description': descripcion.text,
 
                         // 'reference': reference.text,
-                           'stock': int.parse(stockController.text),
+                        'stock': int.parse(stockController.text),
                         'preco': double.parse(
                             priceController.text.replaceAll(',', '.')),
                       });

@@ -239,7 +239,7 @@ class _CargarProdutoState extends State<CargarProduto> {
                     child: Icon(
                       Icons.attach_money_outlined,
                       size: 35,
-                      color: Colors.grey,
+                    //  color: Colors.grey,
                     ),
                   ),
                   focusedBorder: UnderlineInputBorder(

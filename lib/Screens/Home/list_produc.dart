@@ -92,7 +92,7 @@ class _ListProductState extends State<ListProduct> {
                                   produto: data['produto'],
                                   price: '${data['preco']}',
                                   reference: '${data['reference']}',
-                                  stock: '${data['stock']}',
+                                  stock: '${data['stock']}', descripcion: data['description'],
                                 ),
                               ),
                             );
