@@ -3,9 +3,9 @@
     "short_name": "verenaadm",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#eab940",
+    "theme_color": "#eab940",
+    "description": "VerenaAdm",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
