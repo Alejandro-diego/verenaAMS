@@ -27,13 +27,16 @@ class _ListProductState extends State<ListProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          controller: _searchController,
-          decoration: const InputDecoration(
-            hintText: 'Lista de Produto',
-            suffixIcon: Icon(Icons.search),
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextField(
+            controller: _searchController,
+            decoration: const InputDecoration(
+              hintText: 'Lista de Produto',
+              suffixIcon: Icon(Icons.search),
+            ),
+            onChanged: (value) => setState(() {}),
           ),
-          onChanged: (value) => setState(() {}),
         ),
       ),
       body: Column(

@@ -90,7 +90,7 @@ class _EditPageState extends State<EditPage> {
                   // style: const TextStyle(fontSize: 20),
                   decoration: const InputDecoration(
                     labelText: 'Quantidade',
-                    labelStyle: TextStyle(color: Colors.black),
+                    labelStyle: TextStyle(color: Colors.black,backgroundColor: Colors.orange),
                     prefixIcon: Padding(
                       padding: EdgeInsetsDirectional.only(start: 2),
                       child: Icon(
