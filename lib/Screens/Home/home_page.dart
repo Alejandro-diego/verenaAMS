@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:verenaadm/Screens/Home/caragar_produto.dart';
 import 'package:verenaadm/Screens/Home/categorias_page.dart';
+import 'package:verenaadm/Screens/Home/pedidos_page.dart';
 //import 'package:verenaadm/Screens/Home/ventas_page.dart';
 
 
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: ElevatedButton(
-                child: const Text('Adisionar Produto'),
+                child: const Text('Adicionar Produto'),
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -61,6 +62,21 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const Spacer(),
+                Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50),
+              child: ElevatedButton(
+                child: const Text('Pedidos'),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const Pedidos(),
+                    ),
+                  );
+                },
+               
+              ),
+            ),
+             const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: ElevatedButton(
