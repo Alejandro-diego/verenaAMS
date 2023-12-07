@@ -79,11 +79,12 @@ class _ListProductState extends State<ListProduct> {
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Text(data['description']),
                               Text('Reference n° :${data['reference']}'),
                               Text('Estoque    :${data['stock']}'),
                             ],
                           ),
-                          trailing: Text('R\$: ${data['preco']}'),
+                          trailing: Text('R\$: ${data['preco']}',style:  const TextStyle(fontSize: 22,fontWeight: FontWeight.w900),),
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(

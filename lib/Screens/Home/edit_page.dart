@@ -158,6 +158,7 @@ class _EditPageState extends State<EditPage> {
 
                         // 'reference': reference.text,
                         'stock': int.parse(stockController.text),
+                        'description' : descripcionController.text,
                         'preco': double.parse(
                             priceController.text.replaceAll(',', '.')),
                       });
